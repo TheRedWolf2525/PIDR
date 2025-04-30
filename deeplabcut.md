@@ -27,7 +27,7 @@ deeplabcut.check_labels("/chemin/vers/le/dossier_du_projet/config.yaml")
 ## Entraînement du réseau
 ```python
 deeplabcut.create_training_dataset("/chemin/vers/le/dossier_du_projet/config.yaml")
-deeplabcut.train_network("/chemin/vers/le/dossier_du_projet/config.yaml")
+deeplabcut.train_network("/chemin/vers/le/dossier_du_projet/config.yaml", maxiters= 5000 , displayiters = 100)
 ```
 
 ## Évaluation du réseau
@@ -37,7 +37,7 @@ deeplabcut.evaluate_network("/chemin/vers/le/dossier_du_projet/config.yaml")
 
 ## Analyse d'une vidéo
 ```python
-deeplabcut.analyze_videos("/chemin/vers/le/dossier_du_projet/config.yaml ['/chemin/vers/ta_video.mp4']")
+deeplabcut.analyze_videos("/chemin/vers/le/dossier_du_projet/config.yaml" ['/chemin/vers/ta_video.mp4'])
 ```
 
 ## Filtration des points
