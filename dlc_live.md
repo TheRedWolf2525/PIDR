@@ -11,6 +11,7 @@ conda activate deeplabcut_live_env
 pip install 'deeplabcut[gui]'
 pip install numpy==1.22
 pip install --upgrade tensorflow
+pip install dlclive
 pip install tensorpack
 pip install tf-slim
 ```
