@@ -41,9 +41,9 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
     circle_frame = np.ones_like(frame) * 255
     cv2.circle(circle_frame, circle_center, int(circle_diameter_pixels // 2), (0, 255, 255), 2)
     for p in ledsPos:
-        cv2.circle(circle_frame, (int(p[0]*circle_diameter_pixels), int(p[1]*circle_diameter_pixels)), 3, (0, 255, 0), 1)
+        cv2.circle(circle_frame, (int(circle_center[0]+p[0]*circle_diameter_pixels//2), int(circle_center[1]+p[1]*circle_diameter_pixels//2)), 3, (0, 255, 0), 1)
 
     if pose.shape[0] >= 2 and pose[0][2] > 0.5 and pose[1][2] > 0.5:
-        draw_ray_circle_intersection(frame, pose[1], pose[0], circle_center, int(circle_diameter_pixels // 2))
+        draw_ray_circle_intersection(circle_frame, pose[1], pose[0], circle_center, int(circle_diameter_pixels // 2))
     
     cv2.imshow('Circle and Ray', circle_frame)
