@@ -11,6 +11,12 @@ deeplabcut.create_new_project('NomProjet', 'NomUtilisateur', ['/chemin/vers/ta_v
 ```
 
 ## Extraction des images (frames)
+Si plus de 20 frames : 
+```bash
+nano /home/emeline/Documents/PIDR/VESPA-Souris-2025-05-08/config.yaml
+```
+Et changé la ligne : ```numframes2pick: 20```  
+Puis :
 ```python
 deeplabcut.extract_frames("/chemin/vers/le/dossier_du_projet/config.yaml")
 ```
@@ -37,15 +43,20 @@ deeplabcut.evaluate_network("/chemin/vers/le/dossier_du_projet/config.yaml")
 
 ## Analyse d'une vidéo
 ```python
-deeplabcut.analyze_videos("/chemin/vers/le/dossier_du_projet/config.yaml" ['/chemin/vers/ta_video.mp4'])
+deeplabcut.analyze_videos("/chemin/vers/le/dossier_du_projet/config.yaml", ['/chemin/vers/ta_video.mp4'])
 ```
 
 ## Filtration des points
 ```python
-deeplabcut.filterpredictions("/chemin/vers/le/dossier_du_projet/config.yaml ['/chemin/vers/ta_video.mp4']")
+deeplabcut.filterpredictions("/chemin/vers/le/dossier_du_projet/config.yaml", ['/chemin/vers/ta_video.mp4']")
 ```
 
 ## Génération d'une vidéo avec points
 ```python
-deeplabcut.create_labeled_video("/chemin/vers/le/dossier_du_projet/config.yaml ['/chemin/vers/ta_video.mp4']")
+deeplabcut.create_labeled_video("/chemin/vers/le/dossier_du_projet/config.yaml", ['/chemin/vers/ta_video.mp4']")
+```
+
+## Création du dossier *exported_model* pour le live
+```python
+deeplabcut.export_model("/chemin/vers/le/dossier_du_projet/config.yaml")
 ```

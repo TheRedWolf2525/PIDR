@@ -1,19 +1,18 @@
 # Création d'un environnement virtuel
 
 ```
-conda create -n deeplabcut_live_env python=3.8
+conda create -n dlc-live python=3.7 tensorflow==1.13.1
 ```
 
 # Installation des librairie nécessaires
 
 ```
-conda activate deeplabcut_live_env
-pip install 'deeplabcut[gui]'
-pip install numpy==1.22
-pip install --upgrade tensorflow
-pip install dlclive
-pip install tensorpack
-pip install tf-slim
+conda activate dlc-live
+pip install deeplabcut-live-gui
+sudo apt update
+sudo apt install libgtk2.0-dev pkg-config
+pip uninstall opencv-python-headless opencv-python -y
+pip install opencv-python
 ```
 
 # Lancer *test_deeplabcut_live.py*
