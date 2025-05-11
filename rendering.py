@@ -59,6 +59,7 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
             theta += 2* np.pi
         
         centralPointIndex = round(theta/(2*np.pi/NB_LEDS)) % NB_LEDS
+        print("angle : ",theta,"; index : ",centralPointIndex)
     
     for k in range(centralPointIndex-DEPL_LAT, centralPointIndex+DEPL_LAT+1):
         cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[k%NB_LEDS][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[k%NB_LEDS][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), 1)
