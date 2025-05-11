@@ -43,6 +43,7 @@ def draw_ray_circle_intersection(frame, start, end, circle_center, radius, color
     return intersect
 
 def render(frame, pose, circle_center, circle_diameter_pixels):
+    global centralPointIndex
     circle_frame = np.ones_like(frame) * 255
     cv2.circle(circle_frame, circle_center, int(circle_diameter_pixels // 2), (0, 255, 255), 2)
     for p in ledsPos:

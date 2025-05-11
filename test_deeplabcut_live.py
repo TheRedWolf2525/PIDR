@@ -5,7 +5,7 @@ from rendering import render
 
 ### Chemin vers le dossier où se trouve l'entraînement
 # Du type "nom_du_dossier/exported-models/DLC_nom_du_projet_resnet_50_iteration-0_shuffle-1/"
-model_path = '/home/emeline/Documents/PIDR/VESPA-Souris-2025-05-08/exported-models/DLC_VESPA_resnet_50_iteration-0_shuffle-1/'
+model_path = './VESPA-Souris-2025-05-08/exported-models/DLC_VESPA_resnet_50_iteration-0_shuffle-1/'
 
 dlc_proc = Processor()
 dlc_live = DLCLive(model_path, processor=dlc_proc)
