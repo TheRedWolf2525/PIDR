@@ -54,7 +54,7 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
         intersect = draw_ray_circle_intersection(circle_frame, pose[1], pose[0], circle_center, int(circle_diameter_pixels // 2))
     
     if intersect != None:
-        theta = np.arctan2(intersect[1], intersect[0])
+        theta = np.arctan2(intersect[1]-circle_center[1], intersect[0]-circle_center[0])
         if (theta < 0):
             theta += 2* np.pi
         
