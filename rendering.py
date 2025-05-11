@@ -50,8 +50,12 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
         cv2.circle(circle_frame, (int(circle_center[0]+p[0]*circle_diameter_pixels//2), int(circle_center[1]+p[1]*circle_diameter_pixels//2)), 3, (0, 255, 0), 1)
 
     intersect = None
-    if pose.shape[0] >= 2 and pose[0][2] > 0.5 and pose[1][2] > 0.5:
-        intersect = draw_ray_circle_intersection(circle_frame, pose[1], pose[0], circle_center, int(circle_diameter_pixels // 2))
+    if pose.shape[0] >= 2:
+        validPoints = []
+        for p in pose:
+            if p[2] > 0.5:
+                validPoints.append(p)
+        intersect = draw_ray_circle_intersection(circle_frame, validPoints[1], validPoints[0], circle_center, int(circle_diameter_pixels // 2))
     
     if intersect != None:
         theta = np.arctan2(intersect[1]-circle_center[1], intersect[0]-circle_center[0])
