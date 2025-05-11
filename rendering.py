@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 
 DEPL_LAT = 3
-NB_LEDS = 20
-LED_SPEED = 3000
+NB_LEDS = 30
+LED_SPEED = 0.05
 
 def polyg(n):
     L = [(1, 0)]
@@ -13,6 +13,7 @@ def polyg(n):
 
 ledsPos = polyg(NB_LEDS)
 centralPointIndex = 0
+pc = 0
 
 ### Fonction pour dessiner l'intersection entre le cercle et la demi droite
 def draw_ray_circle_intersection(frame, start, end, circle_center, radius, color=(0, 0, 255)):
@@ -43,7 +44,7 @@ def draw_ray_circle_intersection(frame, start, end, circle_center, radius, color
     return intersect
 
 def render(frame, pose, circle_center, circle_diameter_pixels):
-    global centralPointIndex
+    global centralPointIndex, pc
     circle_frame = np.ones_like(frame) * 255
     cv2.circle(circle_frame, circle_center, int(circle_diameter_pixels // 2), (0, 255, 255), 2)
     for p in ledsPos:
@@ -63,10 +64,12 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
             theta += 2* np.pi
         
         centralPointIndex = round(theta/(2*np.pi/NB_LEDS)) % NB_LEDS
-        print("angle : ",theta,"; index : ",centralPointIndex)
     
     for k in range(centralPointIndex-DEPL_LAT, centralPointIndex+DEPL_LAT+1):
         cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[k%NB_LEDS][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[k%NB_LEDS][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), 1)
-    cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[centralPointIndex][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[centralPointIndex][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), -1)
+    
+    indexLed =centralPointIndex + (np.floor((DEPL_LAT+0.5)*(np.sin(pc)+1)) % NB_LEDS)
+    pc = (pc+LED_SPEED) % 2*np.pi
+    cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[indexLed][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[indexLed][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), -1)
 
     cv2.imshow('Circle and Ray', circle_frame)
