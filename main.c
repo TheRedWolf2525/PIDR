@@ -29,6 +29,7 @@ int main(){
         int leds[NB_LEDS] = {};
         pc = fmod(pc+0.1, 2*PI);
         leds[(int)fmod((int) ((DEPL_LAT+0.5)*(sin(pc)+1)), NB_LEDS)] = 1;
+        printf("%d\n", (int)fmod((int) ((DEPL_LAT+0.5)*(sin(pc)+1)), NB_LEDS));
         affichageRuban(leds);
         usleep(SPEED);
     }
