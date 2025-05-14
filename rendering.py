@@ -3,7 +3,7 @@ import numpy as np
 
 DEPL_LAT = 3
 NB_LEDS = 30
-LED_SPEED = 0.001
+LED_SPEED = 0.4
 
 def polyg(n):
     L = [(1, 0)]
