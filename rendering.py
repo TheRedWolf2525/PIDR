@@ -68,9 +68,9 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
     for k in range(centralPointIndex-DEPL_LAT, centralPointIndex+DEPL_LAT+1):
         cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[k%NB_LEDS][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[k%NB_LEDS][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), 1)
     
-    indexLed = centralPointIndex + (int((DEPL_LAT+0.5)*(np.sin(pc)+1)) % NB_LEDS) - DEPL_LAT
-    indexLed = indexLed % NB_LEDS
-    pc = (pc+LED_SPEED) % 2*np.pi
+    offset = int((DEPL_LAT + 0.5) * (np.sin(pc) + 1)) % NB_LEDS
+    indexLed = (centralPointIndex + offset - DEPL_LAT) % NB_LEDS
+    pc = (pc+LED_SPEED) % (2*np.pi)
     cv2.circle(circle_frame, (int(circle_center[0]+ledsPos[indexLed][0]*circle_diameter_pixels//2), int(circle_center[1]+ledsPos[indexLed][1]*circle_diameter_pixels//2)), 4, (127, 0, 255), -1)
 
     cv2.imshow('Circle and Ray', circle_frame)
