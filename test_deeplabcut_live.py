@@ -5,7 +5,7 @@ from rendering import render
 
 ### Chemin vers le dossier où se trouve l'entraînement
 # Du type "nom_du_dossier/exported-models/DLC_nom_du_projet_resnet_50_iteration-0_shuffle-1/"
-model_path = './VESPA-Souris-2025-05-08/exported-models/DLC_VESPA_resnet_50_iteration-0_shuffle-1/'
+model_path = "/home/emeline/Documents/PIDR/VESPA-Souris-2025-05-08/exported-models/DLC_VESPA_resnet_50_iteration-0_shuffle-1/"
 
 dlc_proc = Processor()
 dlc_live = DLCLive(model_path, processor=dlc_proc)
@@ -40,7 +40,7 @@ while True:
     pose = np.array(pose_raw).reshape(-1, 3)
     for i, point in enumerate(pose):
         x, y, likelihood = point
-        if likelihood > 0.5:
+        if likelihood > 0.6:
             cv2.circle(frame, (int(x), int(y)), 5, (0, 255, 0), -1)
             cv2.putText(frame, f"{i}", (int(x) + 5, int(y) - 5),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)

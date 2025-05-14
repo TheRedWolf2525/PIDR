@@ -3,7 +3,7 @@ import numpy as np
 
 DEPL_LAT = 3
 NB_LEDS = 30
-LED_SPEED = 0.05
+LED_SPEED = 0.001
 
 def polyg(n):
     L = [(1, 0)]
@@ -54,7 +54,7 @@ def render(frame, pose, circle_center, circle_diameter_pixels):
     if pose.shape[0] >= 2:
         validPoints = []
         for p in pose:
-            if p[2] > 0.5:
+            if p[2] > 0.6:
                 validPoints.append(p)
         if len(validPoints) >= 2 : intersect = draw_ray_circle_intersection(circle_frame, validPoints[1], validPoints[0], circle_center, int(circle_diameter_pixels // 2))
     
